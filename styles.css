@@ -1,0 +1,201 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  padding-bottom: 50vh;
+  /* Adjust the value as needed */
+}
+
+.hero {
+  color: #fff;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Add position relative */
+}
+
+.hero-title {
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Dark and semi-transparent background */
+  border: 4px solid black;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-logo {
+  height: 50%;
+  min-width: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: fadeInDown 1.5s ease-out forwards, fadeInImage 1.5s ease-out forwards;
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero p {
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInDown 1.5s ease-out 0.5s forwards;
+}
+
+.hero-bg {
+  width: 102vw;
+  height: 102vh;
+  margin-left: -1vw;
+  /* Added margin-left */
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  z-index: -1;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero .btn {
+  background-color: #FFC107;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  height: 4em;
+  z-index: 1;
+}
+
+.tabs-container {
+  padding: 2em;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+#home-tab,
+#about-tab,
+#contact-tab {
+  display: none;
+}
+
+/* Image Slideshow Styling */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slides-wrapper {
+  display: flex;
+  transition: transform 1s ease;
+}
+
+.mySlides {
+  flex: 0 0 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.mySlides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Progress Bar Styling */
+.progress-bar-container {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: width 1s ease;
+}
+
+/* Materialize textarea styling */
+textarea.materialize-textarea {
+  min-height: 150px;
+  max-height: 200px;
+  /* Adjust the height as needed */
+}
