@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize tabs
   var tabs = document.querySelector('.tabs');
   const instance = M.Tabs.init(tabs);
-  instance.select('home-tab');
 
   // Image Slideshow
   var slideIndex = 1;
