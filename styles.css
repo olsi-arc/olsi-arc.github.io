@@ -105,8 +105,12 @@ body {
   display: none;
   animation: fadeIn 0.5s ease-out;
   width: 100vw;
-  padding: 0;
   margin: 0;
+}
+
+.tab-content>section {
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 .tab-content.active {
@@ -129,6 +133,10 @@ body {
 #about-tab,
 #contact-tab {
   display: none;
+}
+
+section > h2:not(:first-child) {
+  margin-top: 120px;
 }
 
 /* Image Slideshow Styling */
@@ -206,10 +214,11 @@ textarea.materialize-textarea {
   /* Adjust the height as needed */
 }
 
-/* home section */
+/* home section handled specifically */
 #homepage-content {
   display: flex;
-  width: 100%;
+  width: 100vw;
+  padding: unset;
   flex-direction: column;
   align-items: center;
 }
@@ -217,13 +226,14 @@ textarea.materialize-textarea {
 #working-with-us {
   width: 100%;
   height: 60vh;
-  margin-top: 50px;
+  margin-top: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-image: url('/images/parquet.png');
+  color:black;
+  font-size: x-large;
+  background-image: url('/images/pq.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -259,4 +269,74 @@ textarea.materialize-textarea {
     width: 95%;
   }
 
+}
+
+/* work-type container */
+.work-type-container {
+  display: flex;
+  width: 75%;
+}
+
+.tile {
+  flex: 1;
+  padding: 5px; 
+}
+
+.box {
+  width: 100%;
+  height: 60vh;
+  /* Increased height to accommodate header */
+  margin: 0 10px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.box-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: relative;
+}
+
+.box:hover .box-background {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tile>h3 {
+  margin-bottom: 10px;
+  font-size: x-large;
+}
+
+.quote-text {
+  opacity: 0;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 100%;
+  padding: 4%;
+  text-align: center;
+  transform: translateX(-50%);
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.box:hover .quote-text {
+  opacity: 1;
+}
+
+#contact-tab > section > form {
+  margin-top: 50px;
 }
