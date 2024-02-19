@@ -1,38 +1,29 @@
-document.addEventListener('DOMContentLoaded', function () {
+$(document).ready(function () {
+
+  var tabs = M.Tabs.init(document.querySelector('.tabs'));
+
   // Initialize tabs
 
-  const tabs = M.Tabs.init(document.querySelector('.tabs'));
+  $('.tabs').tabs();
 
-  function getTabFromHash() {
-    let tabId = window.location.hash;
-    if (tabId.startsWith('#') && tabId.endsWith('-tab')) {
-      return tabId.slice(1)
-    } else {
-      return null
-    }
-  }
-  window.setTab = tabId => {
+  window.setTab = (tabId, addActiveTabToHistory = false) => {
+    //add active tab to history
+    const activeElement = document.getElementsByClassName('tab-content active')[0]
+    const state = { tabName: activeElement.id }
+    window.history.pushState(state, null, `#${activeElement.id}`)
     tabs.select(tabId)
-  }
-
-  let tabId = getTabFromHash()
-  if (tabId) {
-    tabs.select(tabId)
-  } else {
-    // if no tab selected, make sure the home tab is visible (without actually scrolling to it)
-    document.getElementById('home-tab').style['display'] = 'block'
   }
 
   // initialize selects
   let selectObject = M.FormSelect.init(document.querySelectorAll('select'));
-  window.jumpToContactAnchor = function () {
-    const targetElement = document.getElementById('contact-section');
+  window.jumpToContent = function () {
+    const targetElement = document.getElementsByClassName('tab-content active')[0];
     setTimeout(() => {
       targetElement.scrollIntoView({ behavior: 'smooth' })
     }, 100)
   }
   window.setContactType = type => {
-    setTab('contact-tab')
+    setTab('contact-tab', true)
     const selectElement = document.getElementById('contact-select')
     const optionIndex = Array.from(selectElement.options).findIndex(option => option.value === type);
     const options = selectElement.querySelectorAll('option')
@@ -40,6 +31,13 @@ document.addEventListener('DOMContentLoaded', function () {
     options[optionIndex].selected = true
     selectObject = M.FormSelect.init(selectElement)
   }
+
+  window.addEventListener('popstate', function (event) {
+    var poppedState = event.state;
+    if (poppedState !== null) {
+      tabs.select(poppedState.tabName)
+    }
+  });
 
   // Image Slideshow
   var slides = document.querySelectorAll('.mySlides');
@@ -82,20 +80,48 @@ document.addEventListener('DOMContentLoaded', function () {
   function isPastCenter(element) {
     const rect = element.getBoundingClientRect();
     const centerY = window.innerHeight * 2 / 3;
-    // return rect.top < centerY
     return rect.top < centerY
   }
 
-  function handleScroll(elementId) {
+  function handleScrollDescription(elementId) {
     const elem = document.getElementById(elementId);
     if (isPastCenter(elem)) {
       elem.classList.add('active');
-      window.removeEventListener('scroll', handleScroll); // Remove the event listener once animation is triggered
+      window.removeEventListener('scroll', handleScrollDescription); // Remove the event listener once animation is triggered
     }
   }
 
   const hardwoodBackground = 'working-with-us'
 
-  window.addEventListener('scroll', () => handleScroll(hardwoodBackground));
+  window.addEventListener('scroll', () => handleScrollDescription(hardwoodBackground));
+
+
+  function highlightWorkType() {
+    // decide which element contains the trigger point
+
+    // algo: look at all elements that are above trigger, and select the last one. remove all actives, then set the selected one to active
+
+    // recall: 0 is the top of the window
+
+    // NOTE: the active tag only has style defined for mobile devices, so this code is ignored for non-mobile
+
+    const elements = document.querySelectorAll('.work-type-container > .tile > .box')
+
+    const triggerY = 0 + window.innerHeight * 1 / 2;
+
+    for (let i = 0; i < elements.length; i++) {
+      const elem = elements[i]
+      const rect = elem.getBoundingClientRect()
+      // there is only one box for which the following is true:
+      if (rect.top < triggerY && triggerY < rect.bottom) {
+        elem.classList.add('active')
+      } else {
+        elem.classList.remove('active')
+      }
+    }
+
+  }
+
+  window.addEventListener('scroll', highlightWorkType);
 
 });
