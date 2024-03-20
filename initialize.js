@@ -12,6 +12,7 @@ $(document).ready(function () {
     const state = { tabName: activeElement.id }
     window.history.pushState(state, null, `#${activeElement.id}`)
     tabs.select(tabId)
+    const newElement = document.getElementsByClassName('tab-content active')[0]
   }
 
   // initialize selects
@@ -36,6 +37,7 @@ $(document).ready(function () {
     var poppedState = event.state;
     if (poppedState !== null) {
       tabs.select(poppedState.tabName)
+      const activeElement = document.getElementsByClassName('tab-content active')[0]
     }
   });
 
@@ -124,4 +126,61 @@ $(document).ready(function () {
 
   window.addEventListener('scroll', highlightWorkType);
 
+  //cookie code:
+  const cookieConsent = document.getElementById("cookieConsent");
+  const acceptCookiesBtn = document.getElementById("acceptCookies");
+  const rejectCookiesBtn = document.getElementById("rejectCookies");
+
+  const acceptedCookies = localStorage.getItem("acceptedCookies");
+
+  if (acceptedCookies === 'true') {
+    loadGoogleAnalytics()
+  }
+
+  window.addEventListener("scroll", function () {
+    const acceptedCookies = localStorage.getItem("acceptedCookies");
+
+    if (acceptedCookies === null) {
+      if (window.scrollY > 100) {
+        cookieConsent.classList.add("show");
+        cookieConsent.style.display = "flex";
+      } else {
+        cookieConsent.classList.remove("show");
+        cookieConsent.style.display = "none";
+      }
+    }
+  });
+
+  acceptCookiesBtn.addEventListener("click", function () {
+    localStorage.setItem("acceptedCookies", "true");
+    cookieConsent.style.display = "none";
+    loadGoogleAnalytics();
+  });
+  rejectCookiesBtn.addEventListener("click", function () {
+    localStorage.setItem("acceptedCookies", "false");
+    cookieConsent.style.display = "none";
+  });
+
 });
+
+function loadGoogleAnalytics() {
+  const head = document.getElementsByTagName('head')[0]
+
+  const script1 = document.createElement('script')
+  script1.setAttribute('async', '')
+  script1.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=G-JQ0E23XRRE')
+
+  const script2 = document.createElement('script')
+  
+  script2.innerText = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JQ0E23XRRE');
+  `
+
+  head.appendChild(script1)
+  head.appendChild(script2)
+
+}
