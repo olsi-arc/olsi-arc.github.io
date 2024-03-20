@@ -1,9 +1,12 @@
+html {
+  font-family: 'Gill Sans', sans-serif;
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  padding-bottom: 30vh;
+  padding-bottom: 30vb;
   /* Adjust the value as needed */
 }
 
@@ -16,7 +19,7 @@ p {
   color: #fff;
   text-align: center;
   width: 100vw;
-  height: 100vh;
+  height: 100vb;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,7 +71,7 @@ p {
 
 .hero-bg {
   width: 102vw;
-  height: 102vh;
+  height: 102vb;
   margin-left: -1vw;
   /* Added margin-left */
   position: absolute;
@@ -95,13 +98,8 @@ h2 {
 }
 
 .hero .btn {
-  background-color: #FFC107;
-  color: #333;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  height: 4em;
-  z-index: 1;
+  height: 50px;
+  padding-top: 8px;
 }
 
 .advance-btn {
@@ -113,7 +111,7 @@ h2 {
   font-size: large;
   text-transform: unset;
   cursor: pointer;
-  margin-top: 5vh
+  margin-top: 5vb
 }
 
 .tabs-container {
@@ -141,10 +139,10 @@ h2 {
 }
 
 .tab-content>section>form>button {
-  height: 15vh;
+  height: 15vb;
   width: 75%;
   margin-left: 12.5%;
-  margin-top: 5vh;
+  margin-top: 5vb;
 }
 
 .tab-content>section>img {
@@ -194,7 +192,7 @@ section>h2:not(:first-child) {
 
 .mySlides {
   flex: 0 0 100%;
-  height: 60vh;
+  height: 60vb;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -256,7 +254,7 @@ textarea.materialize-textarea {
 
 #working-with-us {
   width: 100%;
-  height: 60vh;
+  height: 60vb;
   margin-top: 120px;
   display: flex;
   flex-direction: column;
@@ -303,7 +301,7 @@ textarea.materialize-textarea {
 
 .box {
   width: 100%;
-  height: 60vh;
+  height: 60vb;
   /* Increased height to accommodate header */
   margin: 0 10px;
   overflow: hidden;
@@ -356,17 +354,13 @@ textarea.materialize-textarea {
   opacity: 1;
 }
 
-#contact-tab>section>form {
-  margin-top: 50px;
-}
-
 .image-grid {
   display: grid;
   grid-template-columns: repeat(2, 50%);
   gap: 20px;
   transform: translateX(-10px);
   /* compensate for gap in grid */
-  margin-top: 5vh;
+  margin-top: 5vb;
   align-items: center;
 }
 
@@ -379,7 +373,7 @@ textarea.materialize-textarea {
 }
 
 .image-grid>figure>img {
-  height: 75vh;
+  height: 75vb;
   width: 100%;
   object-fit: cover;
   border: 5px solid rgb(135, 116, 96);
@@ -390,9 +384,9 @@ textarea.materialize-textarea {
 }
 
 #gallery-tab>section>h2:not(:first-child) {
-  padding-top: 10vh;
+  padding-top: 10vb;
   border-top: 1px solid grey;
-  margin-top: 10vh;
+  margin-top: 10vb;
 }
 
 /* cookies */
@@ -440,6 +434,13 @@ textarea.materialize-textarea {
   opacity: 1;
 }
 
+.phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 120px;
+}
 
 /* mobile */
 
