@@ -519,8 +519,10 @@ textarea.materialize-textarea {
 
   .image-grid {
     grid-template-columns: repeat(1, 100%);
+    min-width: 100%;
+    /* not sure why this margin is necessary: */
+    margin-left: 17.5px;
     gap: 10px;
-    /* only affects vertical gap */
   }
 
   .cookie-consent-container {
